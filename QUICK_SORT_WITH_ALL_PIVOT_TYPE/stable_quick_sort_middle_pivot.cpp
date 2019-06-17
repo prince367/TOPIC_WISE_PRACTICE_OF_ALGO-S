@@ -1,4 +1,4 @@
-//PRINCE
+ //PRINCE
 #include<bits/stdc++.h>
 using namespace std;
 #define rep(i,a,n) for(int i=a;i<n;i++)
@@ -33,11 +33,10 @@ int partition(int arr[],int low,int high)
 			continue;
 		if(arr[j]<pivot)
 		{
-			i++;
+			i++;	
 			if(i==p_index) 
 				i++;
-
-			swap(arr[j],arr[i]);	
+			swap(arr[j],arr[i]);
 		}
 		else if(arr[j]==pivot and j<p_index) // smallest index come first if equal elements
 		{
@@ -45,12 +44,16 @@ int partition(int arr[],int low,int high)
 			swap(arr[j],arr[i]);
 		}
 	}
-	if(i!=low-1)
-		swap(arr[p_index],arr[i]); 
+	if(i<p_index)
+	{
+		swap(arr[p_index],arr[i+1]);
+		return i+1;
+	}
 	else
-		i=p_index;// bcz if no element found which is less than pivot then i should be out of bound    
-			
-	return i;
+	{
+		swap(arr[p_index],arr[i]);
+		return i;		
+	}
 }
 void quick_sort(int arr[],int low,int high)
 {
